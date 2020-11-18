@@ -2,7 +2,9 @@ import json
 import socket
 import sys
 
-import time
+import cv2
+
+
 
 
 class App:
@@ -11,11 +13,13 @@ class App:
         self.__saddr = saddr
 
     def run(self):
+        camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         while True:
+            ret, frame = camera.read()
+            data = cv2.imencode(".png", frame)[1].tobytes()
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client.connect(self.__saddr)
-            client.send(time.strftime("%H:%M:%S").encode())
-            time.sleep(0.5)
+            client.send(data)
 
 
 def main():
