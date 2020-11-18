@@ -19,7 +19,7 @@ class App:
 
 
 def main():
-    settings_path = "./client.json"
+    settings_path = "../resources/client.json"
     if len(sys.argv) >= 2:
         settings_path = sys.argv[1]
 
@@ -31,9 +31,9 @@ def main():
         ).run()
 
     except FileNotFoundError:
-        print("Settings file not found, new was created. Configure it")
         with open(settings_path, "w") as fostream:
             json.dump({"server": {"ip": "127.0.0.1", "port": 8080}}, fostream)
+        print("Settings file not found, new was created. Configure it")
     except KeyError as err:
         print(f"Parameter '{str(err)}' unfilled in settings file")
 
