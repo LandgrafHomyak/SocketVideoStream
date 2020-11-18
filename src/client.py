@@ -16,7 +16,7 @@ class App:
         camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         while True:
             ret, frame = camera.read()
-            data = cv2.imencode(".png", frame)[1].tobytes()
+            data = cv2.imencode(".jpeg", frame)[1].tobytes()
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client.connect(self.__saddr)
             client.send(data)

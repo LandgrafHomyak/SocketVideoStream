@@ -50,7 +50,6 @@ class Window(QWidget):
         painter.drawImage(QRect(0, 0, self.width(), self.height()), self.__img)
 
     def receive_image(self, data):
-        self.__img = QImage()
         self.__img.loadFromData(data)
         self.update()
 
