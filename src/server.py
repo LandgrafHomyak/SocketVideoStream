@@ -26,8 +26,10 @@ class SocketServer(QThread):
 
         while True:
             connection, address = server_socket.accept()
-            if address[0] != self.__caddr:
+            if self.__caddr and address[0] != self.__caddr:
                 connection.close()
+                continue
+
             with connection.makefile("rb") as fistream:
                 data = fistream.read()
 
