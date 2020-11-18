@@ -23,7 +23,7 @@ class App:
 
 
 def main():
-    settings_path = "../resources/client.json"
+    settings_path = "./client.json"
     if len(sys.argv) >= 2:
         settings_path = sys.argv[1]
 
