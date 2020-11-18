@@ -12,10 +12,14 @@ def main():
     try:
         with open(settings_path, "r") as fistream:
             data = json.load(fistream)
-        App(ip=data["ip"], port=data["port"])
+        App(
+            saddr=(data["server"]["ip"], data["server"]["port"]),
+            caddr=data["client"]
+        ).run()
+
     except FileNotFoundError:
         with open(settings_path, "w") as fostream:
-            json.dump({"ip": "127.0.0.1", "port": 8080}, fostream)
+            json.dump({"server": {"ip": "127.0.0.1", "port": 8080}, "client": "127.0.0.1"}, fostream)
     except KeyError as err:
         print(f"Parameter '{str(err)}' unfilled in settings file")
 
