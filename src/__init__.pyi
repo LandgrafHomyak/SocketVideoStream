@@ -1,12 +1,12 @@
 from typing import Tuple, Optional, NoReturn
 
 
-class SocketStreamServer:
+class Server:
     def __init__(self, server_address: str, client_address: Optional[str], windows_size: Tuple[int, int], /) -> NoReturn: ...
 
     def run(self) -> NoReturn: ...
 
-class SocketStreamClient:
+class Client:
     def __init__(self, server_address: str, /) -> NoReturn: ...
 
     def run(self) -> NoReturn: ...
