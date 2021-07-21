@@ -6,6 +6,8 @@ from PyQt5.QtCore import QThread, QRect, pyqtSignal
 from PyQt5.QtGui import QImage, QPainter
 from PyQt5.QtWidgets import QApplication, QWidget
 
+__all__ = ["App", "main"]
+
 
 class SocketServer(QThread):
     __slots__ = ("__saddr", "__caddr")
@@ -68,8 +70,8 @@ class App:
         self.__qapp.exec()
 
 
-def main():
-    settings_path = "./server.json"
+def main(path=None):
+    settings_path = path or (sys.argv[1] if len(sys.argv) > 1 else None) or "./server.json"
     if len(sys.argv) >= 2:
         settings_path = sys.argv[1]
 

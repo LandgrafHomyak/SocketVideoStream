@@ -4,11 +4,12 @@ import sys
 
 import cv2
 
-
+__all__ = ["App", "main"]
 
 
 class App:
     __slots__ = ("__saddr")
+
     def __init__(self, saddr):
         self.__saddr = saddr
 
@@ -22,8 +23,8 @@ class App:
             client.send(data)
 
 
-def main():
-    settings_path = "./client.json"
+def main(path=None):
+    settings_path = path or (sys.argv[1] if len(sys.argv) >= 2 else None) or "./client.json"
     if len(sys.argv) >= 2:
         settings_path = sys.argv[1]
 
